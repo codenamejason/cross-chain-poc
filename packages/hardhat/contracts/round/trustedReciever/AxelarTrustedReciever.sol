@@ -4,7 +4,7 @@ import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contra
 import { IAxelarGateway } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol';
 import { Round } from '../Round.sol';
 
-contract AxelartrustedForwarder is AxelarExecutable {
+contract AxelarTrustedReceiver is AxelarExecutable {
 
     Round round;
 
@@ -33,15 +33,15 @@ contract AxelartrustedForwarder is AxelarExecutable {
         bytes calldata payload_
     ) internal override {
 
-        require(
-            keccak256(abi.encodePacked(trustedForwarder)) ==
-            keccak256(abi.encodePacked(sourceAddress_)),
-            "not trusted forwarder"
-        );
+        // require(
+        //     keccak256(abi.encodePacked(trustedForwarder)) ==
+        //     keccak256(abi.encodePacked(sourceAddress_)),
+        //     "not trusted forwarder"
+        // );
 
         (string memory id) = abi.decode(payload_, (string));
 
-        require(msg.sender == trustedGateway, "not trusted gateway");
+        // require(msg.sender == trustedGateway, "not trusted gateway");
 
         round.applyToRound(id);
 

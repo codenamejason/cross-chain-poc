@@ -7,7 +7,7 @@ import { DeployFunction } from "hardhat-deploy/types";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployProjectRegistry: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployAxelarTrustedReceiver: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
  
@@ -21,10 +21,10 @@ const deployProjectRegistry: DeployFunction = async function (hre: HardhatRuntim
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("ProjectRegistry", {
+  await deploy("AxelarTrustedReceiver", {
     from: deployer,
     // Contract constructor arguments
-    // args: [deployer],
+    args: ["0x97837985Ec0494E7b9C71f5D3f9250188477ae14"],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -32,11 +32,11 @@ const deployProjectRegistry: DeployFunction = async function (hre: HardhatRuntim
   });
 
   // Get the deployed contract
-  // const ProjectRegistry = await hre.ethers.getContract("ProjectRegistry", deployer);
+  // const AxelarTrustedReceiver = await hre.ethers.getContract("AxelarTrustedReceiver", deployer);
 };
 
-export default deployProjectRegistry;
+export default deployAxelarTrustedReceiver;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags ProjectRegistry
-deployProjectRegistry.tags = ["ProjectRegistry"];
+// e.g. yarn deploy --tags AxelarTrustedReceiver
+deployAxelarTrustedReceiver.tags = ["AxelarTrustedReceiver"];
